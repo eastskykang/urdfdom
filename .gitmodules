@@ -1,0 +1,9 @@
+[submodule "ext/console_bridge"]
+	path = ext/console_bridge
+	url = https://github.com/ros/console_bridge.git
+[submodule "ext/urdfdom_headers"]
+	path = ext/urdfdom_headers
+	url = https://github.com/ros/urdfdom_headers.git
+[submodule "ext/tinyxml"]
+	path = ext/tinyxml
+	url = https://git.code.sf.net/p/tinyxml/git
