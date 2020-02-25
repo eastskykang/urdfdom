@@ -1,7 +1,17 @@
 # console bridge
+set(BUILD_SHARED_LIBS
+  OFF 
+  CACHE BOOL 
+  "Build console_bridge as static library"
+)
 add_subdirectory(console_bridge)
 
 # tiny xml
+option(TINYXML_USE_STL
+  "TINYXML_USE_STL can be used to turn on STL support."
+  ON
+)
+
 add_library(tinyXML STATIC
   "tinyxml/tinyxml.cpp"
   "tinyxml/tinyxmlerror.cpp"
@@ -13,11 +23,27 @@ target_include_directories(tinyXML
   tinyxml
 )
 
-target_compile_definitions(tinyXML
-  PRIVATE
-  TIXML_USE_STL
-  _CRT_SECURE_NO_DEPRECATE
-  _CRT_NONSTDC_NO_DEPRECATE
-  INTERFACE
-  TIXML_USE_STL
-)
+if(TINYXML_USE_STL)
+  target_compile_definitions(tinyXML
+    PUBLIC
+    TIXML_USE_STL
+  )
+endif()
+
+if(CMAKE_BUILD_TYPE MATCHES Debug)
+  target_compile_options(tinyXML
+    PUBLIC
+    -Wall
+    -Wno-format
+    -g
+    -DDEBUG
+  )
+elseif(CMAKE_BUILD_TYPE MATCHES Release)
+  target_compile_options(tinyXML
+    PUBLIC
+    -Wall 
+    -Wno-unknown-pragmas 
+    -Wno-format 
+    -O3
+  )
+endif()

@@ -16,7 +16,7 @@ set(CONSOLE_BRIDGE_INCLUDE_DIRS
 
 #--------------------------------------------------------------------------------
 # urdfdom_world
-add_library(urdfdom_world SHARED 
+add_library(urdfdom_world STATIC 
   src/pose.cpp 
   src/model.cpp 
   src/link.cpp 
@@ -42,7 +42,7 @@ set_target_properties(urdfdom_world
 )
 
 # urdfdom_model
-add_library(urdfdom_model SHARED 
+add_library(urdfdom_model STATIC 
   src/pose.cpp 
   src/model.cpp 
   src/link.cpp 
@@ -66,7 +66,7 @@ set_target_properties(urdfdom_model
 )
 
 # urdfdom_sensor
-add_library(urdfdom_sensor SHARED 
+add_library(urdfdom_sensor STATIC 
   src/urdf_sensor.cpp
 )
 
@@ -89,7 +89,7 @@ set_target_properties(urdfdom_sensor
 )
 
 # urdfdom_model_state
-add_library(urdfdom_model_state SHARED 
+add_library(urdfdom_model_state STATIC 
   src/urdf_model_state.cpp 
   src/twist.cpp
 )
